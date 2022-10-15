@@ -8,12 +8,13 @@ from .serializers import TeacherAssignmentSerializer
 
 
 class AssignmentsView(generics.ListCreateAPIView):
+    # creating serializer object
     serializer_class = TeacherAssignmentSerializer
 
     def get(self, request, *args, **kwargs):
         teacher = Teacher.objects.get(user=request.user)
 
-        #adding teacher key in request data with its value
+        # adding teacher key in request data with its value
         request.data['teacher'] = teacher.id
         assignments = Assignment.objects.filter(teacher__user=request.user)
 
@@ -34,6 +35,7 @@ class AssignmentsView(generics.ListCreateAPIView):
 
         try:
             teacher = Teacher.objects.get(user=request.user)
+            # we have passed teacher_id also,so if assignment is not submmitted to this teacher then it throw an Assignment.DoesNotExist error
             assignment = Assignment.objects.get(
                 pk=request.data['id'], teacher=teacher.id)
 
@@ -51,15 +53,18 @@ class AssignmentsView(generics.ListCreateAPIView):
                     status=status.HTTP_400_BAD_REQUEST
                 )
 
+        # if assignment doesn't submitted to this teacher then it will throw error
         except Assignment.DoesNotExist:
             return Response(
                 data={'error': 'Assignment does not exist/permission denied'},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
+        # passing queryset object to serializer to convert datatype from queryset to JSON
         serializer = self.serializer_class(
             assignment, data=request.data, partial=True)
 
+        # checking that JSON field are valid or not through serializer.valid function
         if serializer.is_valid():
             serializer.save()
 
