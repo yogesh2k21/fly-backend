@@ -1,0 +1,7 @@
+version: '3.8'  # specify docker-compose version
+services:       # services means the containers
+  project:
+    build: .    # dockerfile path
+    container_name: fly_backend
+    ports:      # port binding of container to host
+      - 8000:8000
