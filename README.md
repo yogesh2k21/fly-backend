@@ -1,66 +1,59 @@
-# Fyle Integrations Backend Challenge
 
-## Who is this for?
+# Things I have done in Assignment
 
-This challenge is meant for candidates who wish to work / intern at Fyle and work with our engineering teams.
-
-If it is for internship, you should be able to commit to at least 6 months.
-
-## Why work at Fyle?
-
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
-
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+- Implemented all the missing APIs.
+- Increase pyTest test coverage to maximum as I can and I got 96% test coverage in the pyTest.
 
 
-## Challenge outline
+# Missing APIs
 
-This is a web application designed in a context of a single classroom. 
-Described [here](./Application.md)
+- Grade an Assignment
+- List all Assignments that is submitted to the particular teacher.
 
-### Your tasks 
-1. Add missing APIs mentioned [here](./Application.md#Missing-APIs)
-2. Get the automated tests to pass
-3. Get the test coverage to 90% or above
-4. Feel free to add more test cases, try to increase the coverage as much as you can
+# New Files
 
-## Submission
+- Dockerfile
+- docker-compose.yml
 
-Once you are done with your task, please use [this form](https://forms.gle/Hcs7VX4YiopWwQa4A) to complete your submission.
+# Errors
 
-## What happens next?
+when I copy files from directory to image and installing the requirements file throw error which i have mentioned below 
 
-You will hear back within 48 hours from us via email. We may request for some changes based on reviewing your code.
 
-Subsequently, we will schedule a phone interview with a Fyle Engineer.
+```
+ => [ 9/10] RUN chmod 777 venv                                                                                                                                                                 0.5s 
+ => ERROR [10/10] RUN . venv/bin/activate && pip install -r requirements.txt                                                                                                                   1.5s 
+------
+ > [10/10] RUN . venv/bin/activate && pip install -r requirements.txt:
+#0 1.347 ERROR: Could not open requirements file: [Errno 2] No such file or directory: 'requirements.txt'
+------
+failed to solve: executor failed running [/bin/sh -c . venv/bin/activate && pip install -r requirements.txt]: exit code: 1
+```
 
-If that goes well, we'll make an offer. 
+so to solve this i have used the git repo URL to fetch the project and then make it as WORKDIR and install all dependencies.
 
----
+## Requirements
+
+- Docker
 
 ## Installation
-1. Fork this repository to your github account
-2. Clone the forked repository and proceed with steps mentioned below
 
-### Install requirements
+Clone this project
+
+Go to the project directory
+
+hit given commands.
+
+```bash
+$ cd fly-backend/
+$ docker-compose up
 ```
-virtualenv env --python=python3.8
-source env/bin/activate
-pip install -r requirements.txt
+Now Application is ready to use
+
+Just open browser and type and hit enter
 ```
-### Reset DB
+http://127.0.0.1:8000/
 ```
-rm db.sqlite3
-```
-### Reset Test DB
-```
-rm test_db.sqlite3
-```
-### Start Server
-```
-bash run.sh
-```
-### Run Tests
-```
-pytest tests/ --cov
-```
+# Tools that I use to test APIs
+
+- [RapidAPI](https://rapidapi.com/)
