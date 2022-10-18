@@ -70,7 +70,7 @@ TEMPLATES = [
         },
     },
 ]
-
+# "Web Server Gateway Interface". It is used to forward requests from a web server to a backend Python web application or django.
 WSGI_APPLICATION = 'fyle_classroom.wsgi.application'
 
 REST_FRAMEWORK = {
